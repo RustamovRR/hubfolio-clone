@@ -5,3 +5,4 @@ export { PartnersSection } from "./PartnersSection";
 export { TestimonialsSection } from "./TestimonialsSection";
 export { AwardsSection } from "./AwardsSection";
 export { ExperienceSection } from "./ExperienceSection";
+export { ArticlesSection } from "./ArticlesSection";
