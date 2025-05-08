@@ -9,7 +9,8 @@ import {
   FeaturedWorksSection,
   PartnersSection,
   TestimonialsSection,
-  AwardsSection
+  AwardsSection,
+  ExperienceSection
 } from "@/sections";
 
 export default function Home() {
@@ -129,6 +130,10 @@ export default function Home() {
 
       <section className="py-10">
         <AwardsSection />
+      </section>
+
+      <section className="py-10">
+        <ExperienceSection />
       </section>
     </div>
   );
