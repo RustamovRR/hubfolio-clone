@@ -1,103 +1,116 @@
+"use client";
+
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import Image from "next/image";
+import { MarqueeSection, OurServicesSection, FeaturedWorksSection } from "@/sections";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  const heroRef = useRef(null);
+  const textRef = useRef(null);
+  const servicesRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
+  const worksRef = useRef<HTMLDivElement>(null);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Hero section animation
+      gsap.from(heroRef.current, {
+        opacity: 0,
+        y: 100,
+        duration: 1.5,
+        ease: "power4.out",
+      });
+
+      // Text animation
+      gsap.from(textRef.current, {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        delay: 0.5,
+        ease: "power3.out",
+      });
+
+      // Scroll animations
+      gsap.utils
+        .toArray<HTMLElement>(".animate-on-scroll")
+        .forEach((element) => {
+          gsap.from(element, {
+            scrollTrigger: {
+              trigger: element,
+              start: "top 80%",
+              end: "bottom 20%",
+              toggleActions: "play none none reverse",
+            },
+            opacity: 0,
+            y: 50,
+            duration: 1,
+            ease: "power3.out",
+          });
+        });
+    });
+
+    return () => ctx.revert();
+  }, []);
+
+  return (
+    <div>
+      <section className="flex items-center p-10">
+        <h1 className="text-[120px] leading-[1.2] flex-1 font-medium">
+          Marketing <br /> & SEO studio
+        </h1>
+        <div className="w-2/5">
+          <p>
+            Connecting businesses with their audiences, and individuals with
+            their dreams. Our path forward is one of continuous growth
+          </p>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </section>
+
+      <section className="h-[600px] mt-20 relative">
+        <Image
+          src={
+            "https://uithemez.com/i/hubfolio_HTML/modern_agency/assets/imgs/header/bg1.jpg"
+          }
+          alt=""
+          width={1000}
+          height={600}
+          className="w-full h-[600px] object-cover"
+        />
+        <div className="absolute z-10 bottom-0 right-0 hubfolio-text">
+          HUBFOLIO
+        </div>
+      </section>
+
+      <section className="flex items-start p-10 px-16 mt-10">
+        <div className="w-2/5">
+          <h6 className="blend_of_simplicity uppercase relative">
+            the blend of simplicity and innovation
+          </h6>
+        </div>
+        <div className="flex-1">
+          <h3 className="text-[40px] font-medium">
+            <span className="text-[#999898]">Welcome to Hubfolio</span> — your
+            reliable and friendly AI companion designed to make your daily life
+            simpler and more enjoyable in this fast-paced world.
+          </h3>
+        </div>
+      </section>
+
+      <section className="p-10 px-16 mt-20" ref={servicesRef}>
+        <OurServicesSection />
+      </section>
+
+      <section
+        className="relative mt-20 mb-40 h-[300px] overflow-hidden bg-black"
+        ref={marqueeRef}
+      >
+        <MarqueeSection />
+      </section>
+
+      <section className="py-10 mt-20" ref={worksRef}>
+        <FeaturedWorksSection />
+      </section>
     </div>
   );
 }

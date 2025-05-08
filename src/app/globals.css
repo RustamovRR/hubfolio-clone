@@ -1,26 +1,84 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --foreground-rgb: 0, 0, 0;
+  --background-rgb: 255, 255, 255;
+
+  --bg-primary-black: #212121;
+  --theme-color: #181818;
+  --primary-blue: #005cc3;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-primary-blue: var(--primary-blue);
+  --color-primary-black: var(--bg-primary-black)
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: rgb(var(--background-rgb));
+  cursor: none;
+  color: white;
+}
+
+main {
+  background-image: url("/bg-main.jpg");
+  background-size: cover;
+}
+
+#smooth-wrapper {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+#smooth-content {
+  min-height: 100vh;
+  will-change: transform;
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
+
+/* Custom cursor styles */
+.cursor {
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+.cursor-follower {
+  pointer-events: none;
+  mix-blend-mode: difference;
+}
+
+/* .hubfolio-text {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  bottom: 10px;
+  right: 10px;
+  -webkit-clip-path: url(#svgTextPath);
+  clip-path: url(#svgTextPath);
+  background: rgba(255, 255, 255, 0.2);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  -webkit-transform: translateX(30%) translateY(60%);
+  -ms-transform: translateX(30%) translateY(60%);
+  transform: translateX(30%) translateY(60%);
+} */
+
+.blend_of_simplicity:after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 10px;
+  left: -5%;
 }
