@@ -3,7 +3,13 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import Image from "next/image";
-import { MarqueeSection, OurServicesSection, FeaturedWorksSection } from "@/sections";
+import { 
+  MarqueeSection, 
+  OurServicesSection, 
+  FeaturedWorksSection,
+  PartnersSection,
+  TestimonialsSection 
+} from "@/sections";
 
 export default function Home() {
   const heroRef = useRef(null);
@@ -110,6 +116,14 @@ export default function Home() {
 
       <section className="py-10 mt-20" ref={worksRef}>
         <FeaturedWorksSection />
+      </section>
+
+      <section className="py-10">
+        <PartnersSection />
+      </section>
+
+      <section className="py-10">
+        <TestimonialsSection />
       </section>
     </div>
   );
