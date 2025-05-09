@@ -1,57 +1,62 @@
-'use client';
+'use client'
 
-import { useEffect, useRef } from 'react';
-import { gsap } from 'gsap';
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 
 const marqueeItems = [
   'TOP-NOTCH EXPERTS',
   'DEDICATED SUPPORT 24/7',
   'FLEXIBLE PRICING',
-  'AI-DRIVEN SOLUTIONS'
-];
+  'AI-DRIVEN SOLUTIONS',
+]
 
- const MarqueeSection = () => {
-  const topRibbonRef = useRef<HTMLDivElement>(null);
-  const bottomRibbonRef = useRef<HTMLDivElement>(null);
+const MarqueeSection = () => {
+  const topRibbonRef = useRef<HTMLDivElement>(null)
+  const bottomRibbonRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const topRibbon = topRibbonRef.current;
-    const bottomRibbon = bottomRibbonRef.current;
+    const topRibbon = topRibbonRef.current
+    const bottomRibbon = bottomRibbonRef.current
 
-    if (!topRibbon || !bottomRibbon) return;
+    if (!topRibbon || !bottomRibbon) return
 
     // Clone items for seamless loop
-    const topContent = topRibbon.querySelector('.marquee-content');
-    const bottomContent = bottomRibbon.querySelector('.marquee-content');
+    const topContent = topRibbon.querySelector('.marquee-content')
+    const bottomContent = bottomRibbon.querySelector('.marquee-content')
 
     if (topContent && bottomContent) {
-      topContent.innerHTML += topContent.innerHTML;
-      bottomContent.innerHTML += bottomContent.innerHTML;
+      topContent.innerHTML += topContent.innerHTML
+      bottomContent.innerHTML += bottomContent.innerHTML
     }
+
+    // Set initial position for bottom ribbon
+    gsap.set(bottomContent, {
+      x: '-50%',
+    })
 
     // Top ribbon animation
     gsap.to(topContent, {
       x: '-50%',
       duration: 20,
       ease: 'none',
-      repeat: Infinity
-    });
+      repeat: -1,
+    })
 
-    // Bottom ribbon animation (slightly slower)
+    // Bottom ribbon animation
     gsap.to(bottomContent, {
-      x: '50%',
+      x: '0%',
       duration: 20,
       ease: 'none',
-      repeat: Infinity
-    });
-  }, []);
+      repeat: -1,
+    })
+  }, [])
 
   return (
     <>
       {/* Top Ribbon */}
       <div
         ref={topRibbonRef}
-        className="absolute w-full py-8 bg-primary-blue transform rotate-[3deg] translate-y-20 z-10"
+        className="bg-primary-blue absolute z-10 w-full translate-y-20 rotate-[3deg] transform overflow-hidden py-8"
         style={{
           transformOrigin: 'left center',
         }}
@@ -60,9 +65,9 @@ const marqueeItems = [
           {marqueeItems.map((item, index) => (
             <div
               key={index}
-              className="inline-flex items-center gap-8 mx-8 text-2xl font-medium"
+              className="mx-8 inline-flex items-center gap-8 text-2xl font-medium"
             >
-              <span className="w-3 h-3 bg-white rounded-full" />
+              <span className="h-3 w-3 rounded-full bg-white" />
               {item}
             </div>
           ))}
@@ -72,7 +77,7 @@ const marqueeItems = [
       {/* Bottom Ribbon */}
       <div
         ref={bottomRibbonRef}
-        className="absolute w-full py-8 bg-primary-black transform -rotate-[3deg] translate-y-32"
+        className="bg-primary-black absolute w-full translate-y-32 -rotate-[3deg] transform overflow-hidden py-8"
         style={{
           transformOrigin: 'right center',
         }}
@@ -81,16 +86,16 @@ const marqueeItems = [
           {marqueeItems.map((item, index) => (
             <div
               key={index}
-              className="inline-flex items-center gap-8 mx-8 text-2xl font-medium"
+              className="mx-8 inline-flex items-center gap-8 text-2xl font-medium"
             >
-              <span className="w-3 h-3 bg-white rounded-full" />
+              <span className="h-3 w-3 rounded-full bg-white" />
               {item}
             </div>
           ))}
         </div>
       </div>
     </>
-  );
-}; 
+  )
+}
 
 export default MarqueeSection

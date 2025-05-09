@@ -55,7 +55,7 @@ export default function Home() {
       </section>
 
       <section
-        className="relative mt-20 mb-40 h-[300px] overflow-hidden bg-black"
+        className="relative mb-40 h-[300px] overflow-hidden"
         ref={marqueeRef}
       >
         <MarqueeSection />
