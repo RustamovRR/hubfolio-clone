@@ -1,143 +1,79 @@
-"use client";
+'use client'
 
-import { useEffect } from "react";
-import { gsap } from "gsap";
-import Image from "next/image";
+import Image from 'next/image'
+import { ChevronRight } from 'lucide-react'
+import { cn } from '@/utils'
 
 interface ServiceItem {
-  id: number;
-  title: string;
-  description: string;
-  icon: string;
+  id: number
+  title: string
+  description: string
+  icon: string
 }
 
 const services: ServiceItem[] = [
   {
     id: 1,
-    title: "Branding",
-    description: "Brand Identity, Strategy & Consult, Position, Rebrand",
-    icon: "/crown-solid.svg",
+    title: 'Branding',
+    description: 'Brand Identity, Strategy & Consult, Position, Rebrand',
+    icon: '/crown-solid.svg',
   },
   {
     id: 2,
-    title: "Design",
-    description: "Brand Identity, Strategy & Consult, Position, Rebrand",
-    icon: "/chart-line-solid.svg",
+    title: 'Design',
+    description: 'Brand Identity, Strategy & Consult, Position, Rebrand',
+    icon: '/chart-line-solid.svg',
   },
   {
     id: 3,
-    title: "Code",
-    description: "Brand Identity, Strategy & Consult, Position, Rebrand",
-    icon: "/code-solid.svg",
+    title: 'Code',
+    description: 'Brand Identity, Strategy & Consult, Position, Rebrand',
+    icon: '/code-solid.svg',
   },
   {
     id: 4,
-    title: "Growth",
-    description: "Brand Identity, Strategy & Consult, Position, Rebrand",
-    icon: "/bezier-curve-solid.svg",
+    title: 'Growth',
+    description: 'Brand Identity, Strategy & Consult, Position, Rebrand',
+    icon: '/bezier-curve-solid.svg',
   },
-];
+]
 
 const OurServicesSection = () => {
-  useEffect(() => {
-    const serviceItems = document.querySelectorAll(".service-item");
-
-    serviceItems.forEach((item) => {
-      const title = item.querySelector(".service-title");
-      const contentWrapper = item.querySelector(".service-content-wrapper");
-      const content = item.querySelector(".service-content");
-      const icon = item.querySelector(".service-icon");
-
-      // Set initial states
-      gsap.set(item, {
-        height: "120px", // Initial height
-        overflow: "hidden",
-      });
-
-      gsap.set(contentWrapper, {
-        y: -20, // Slightly move up initially
-      });
-
-      gsap.set(title, {
-        opacity: 0.4,
-        y: 20, // Move down initially
-      });
-
-      // Create hover animation timeline
-      const tl = gsap.timeline({ paused: true });
-
-      tl.to(item, {
-        height: "150px", // Expanded height
-        duration: 0.5,
-        ease: "power2.out",
-      })
-        .to(
-          contentWrapper,
-          {
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.4"
-        )
-        .to(
-          title,
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.4,
-            ease: "power2.out",
-          },
-          "-=0.4"
-        )
-        .to(
-          icon,
-          {
-            scale: 1.1,
-            duration: 0.3,
-            ease: "power2.out",
-          },
-          "-=0.3"
-        );
-
-      // Add hover event listeners
-      item.addEventListener("mouseenter", () => {
-        tl.play();
-      });
-
-      item.addEventListener("mouseleave", () => {
-        tl.reverse();
-      });
-    });
-  }, []);
+  // Remove useEffect since we're using CSS transitions now
 
   return (
     <>
       {/* Title and Button */}
-      <div className="flex justify-between items-center mb-32">
-        <h2 className="text-[80px] font-medium">Our Services</h2>
-        <button className="border border-white rounded-full px-8 py-4 hover:bg-white hover:text-black transition-all duration-300">
-          See Our Approach
+      <div className="flex items-center justify-between">
+        <h2 className="text-5xl font-medium">Our Services</h2>
+        <button className="flex h-[53px] items-center gap-2 rounded-full border border-white p-6 transition-all duration-300 hover:bg-white hover:text-black">
+          <span className="text-sm font-medium">See Our Approach</span>
+          <ChevronRight />
         </button>
       </div>
 
       {/* Services List */}
-      <div className="grid grid-cols-1">
+      <div className="mt-10 grid grid-cols-1">
         {services.map((service, index) => (
           <div
             key={service.id}
-            className={`service-item flex items-center justify-between py-10 border-t ${
-              index === services.length - 1 ? "border-b" : ""
-            } border-[#333] group cursor-none bg-black`}
+            className={cn(
+              'group relative flex h-[120px] overflow-hidden border-t px-4 py-8',
+              'cursor-none border-[#333] transition-all duration-500 hover:h-[180px]',
+              'hover:bg-primary-black',
+              index === services.length - 1 ? 'border-b' : '',
+            )}
           >
-            <h3 className="service-title text-[80px] font-medium">
-              {service.title}
-            </h3>
-            <div className="service-content-wrapper flex items-center gap-10">
-              <div className="service-content w-[300px]">
-                <p className="text-lg text-[#999898]">{service.description}</p>
+            <div className="absolute h-[120px]">
+              <h3 className="group-hover:text-primary-blue translate-y-2 text-[120px] leading-[0.8] font-medium text-white transition-colors duration-500">
+                {service.title}
+              </h3>
+            </div>
+            <div className="group-hover:text-primary-blue ml-auto flex items-center gap-10 transition-transform duration-500 group-hover:translate-y-2">
+              <div className="w-[300px]">
+                <p className="text-white">{service.description}</p>
               </div>
-              <div className="w-[60px] h-[60px] rounded-full flex items-center justify-center border border-white">
+              <div className="flex h-[60px] w-[60px] items-center justify-center rounded-full border border-white/10">
                 <Image src={service.icon} alt="" width={30} height={30} />
               </div>
             </div>
@@ -145,7 +81,7 @@ const OurServicesSection = () => {
         ))}
       </div>
     </>
-  );
-};
+  )
+}
 
-export default OurServicesSection;
+export default OurServicesSection

@@ -6,3 +6,5 @@ export { TestimonialsSection } from "./TestimonialsSection";
 export { AwardsSection } from "./AwardsSection";
 export { ExperienceSection } from "./ExperienceSection";
 export { ArticlesSection } from "./ArticlesSection";
+export { NewsletterSection } from "./NewsletterSection";
+export { HeroSection } from "./HeroSection";

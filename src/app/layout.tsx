@@ -6,6 +6,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Header, Footer } from "@/components";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -75,11 +76,15 @@ export default function RootLayout({
         <div id="smooth-wrapper">
           <div
             id="smooth-content"
-            className="!bg-red-200 min-h-screen flex flex-col"
+            className="min-h-screen flex flex-col"
           >
-            <header></header>
+            <header>
+              <Header />
+            </header>
             <main className="flex-1">{children}</main>
-            <footer></footer>
+            <footer>
+              <Footer />
+            </footer>
           </div>
         </div>
       </body>
