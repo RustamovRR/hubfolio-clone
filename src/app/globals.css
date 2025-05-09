@@ -92,3 +92,14 @@ main {
   top: 12px;
   left: -20%;
 }
+
+.partner_with:after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: red;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  left: -10%;
+}

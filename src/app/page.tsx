@@ -65,11 +65,11 @@ export default function Home() {
         <FeaturedWorksSection />
       </section>
 
-      <section className="py-10">
+      <section className="bg-primary-black mt-20 rounded-t-[30px] px-36 py-10">
         <PartnersSection />
       </section>
 
-      <section className="py-10">
+      <section className="-translate-y-28 px-36">
         <TestimonialsSection />
       </section>
 
