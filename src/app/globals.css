@@ -97,9 +97,20 @@ main {
   content: '';
   width: 7px;
   height: 7px;
-  background: red;
+  background: #fff;
   border-radius: 50%;
   position: absolute;
   top: 12px;
-  left: -10%;
+  left: -2%;
+}
+
+.awards_recognition::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  left: -7%;
 }

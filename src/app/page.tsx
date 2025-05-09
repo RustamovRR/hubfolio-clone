@@ -73,7 +73,7 @@ export default function Home() {
         <TestimonialsSection />
       </section>
 
-      <section className="py-10">
+      <section className="py-10 px-36">
         <AwardsSection />
       </section>
 

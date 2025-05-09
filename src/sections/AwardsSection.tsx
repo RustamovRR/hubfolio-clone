@@ -1,115 +1,118 @@
-"use client";
+'use client'
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
+import { useEffect, useRef } from 'react'
+import { gsap } from 'gsap'
 
 interface Award {
-  id: number;
-  platform: string;
-  title: string;
-  date: string;
+  id: number
+  platform: string
+  title: string
+  date: string
 }
 
 const awards: Award[] = [
   {
     id: 1,
-    platform: "Awwwards",
-    title: "SOTY 2023 - 1st Winner",
-    date: "May 2023",
+    platform: 'Awwwards',
+    title: 'SOTY 2023 - 1st Winner',
+    date: 'May 2023',
   },
   {
     id: 2,
-    platform: "css awards",
-    title: "Top 5 Best of eCommerce Websites 2022",
-    date: "Dec 2022",
+    platform: 'css awards',
+    title: 'Top 5 Best of eCommerce Websites 2022',
+    date: 'Dec 2022',
   },
   {
     id: 3,
-    platform: "Awwwards",
-    title: "Honor SOTD November, 2022r",
-    date: "Nov 2022",
+    platform: 'Awwwards',
+    title: 'Honor SOTD November, 2022r',
+    date: 'Nov 2022',
   },
   {
     id: 4,
-    platform: "Behance Portfolio",
-    title: "Winner - US Behance Portfolio Review 2021",
-    date: "Aug 2021",
+    platform: 'Behance Portfolio',
+    title: 'Winner - US Behance Portfolio Review 2021',
+    date: 'Aug 2021',
   },
-];
+]
 
 export const AwardsSection = () => {
-  const listRefs = useRef<(HTMLLIElement | null)[]>([]);
+  const listRefs = useRef<(HTMLLIElement | null)[]>([])
 
   useEffect(() => {
     // Initialize hover animations
     listRefs.current.forEach((item) => {
-      if (!item) return;
-
-      const bg = item.querySelector(".hover-bg");
-      if (!bg) return;
+      if (!item) return
 
       gsap.set(bg, {
         yPercent: 100,
-      });
+      })
 
-      item.addEventListener("mouseenter", () => {
+      item.addEventListener('mouseenter', () => {
         gsap.to(bg, {
           yPercent: 0,
           duration: 0.4,
-          ease: "power2.out",
-        });
-      });
+          ease: 'power2.out',
+        })
+      })
 
-      item.addEventListener("mouseleave", () => {
+      item.addEventListener('mouseleave', () => {
         gsap.to(bg, {
           yPercent: 100,
           duration: 0.4,
-          ease: "power2.out",
-        });
-      });
-    });
-  }, []);
+          ease: 'power2.out',
+        })
+      })
+    })
+  }, [])
 
   return (
-    <section className="py-32">
+    <>
       <div className="container mx-auto">
-        <div className="flex justify-between items-start gap-20">
+        <div className="flex items-start justify-between gap-20">
           {/* Left side - Text */}
           <div className="w-2/5">
-            <h6 className="text-lg mb-6">Awards & Recognition</h6>
-            <h2 className="text-4xl font-medium leading-tight">
-              Efforts to receive worthy rewards, awards & recognition{" "}
+            <h6 className="awards_recognition relative mb-6 ml-8 text-[20px] font-medium">
+              Awards & Recognition
+            </h6>
+            <h2 className="text-4xl leading-tight font-medium">
+              Efforts to receive worthy rewards, awards & recognition{' '}
               <span className="text-[#999898]">help us affirm our brand.</span>
             </h2>
           </div>
 
           {/* Right side - Awards list */}
           <div className="flex-1">
-            <div className="flex items-center text-sm text-[#999898] pb-4 border-b border-[#333]">
-              <span className="w-1/2">AWARD TITLE</span>
-              <span className="w-1/2 text-right">DATE</span>
+            <div className="flex items-center border-b border-white/70 pb-8 text-sm">
+              <span className="w-1/2 text-[12px] font-medium text-[#BBBBBB]">
+                AWARD TITLE
+              </span>
+              <span className="w-1/2 text-right text-[12px] font-medium text-[#BBBBBB]">
+                DATE
+              </span>
             </div>
             <ul>
               {awards.map((award, index) => (
                 <li
                   key={award.id}
                   ref={(el) => (listRefs.current[index] = el)}
-                  className="relative overflow-hidden border-b border-[#333] cursor-pointer group"
+                  className="group relative h-[114px] cursor-pointer overflow-hidden border-b border-[#333]"
                 >
                   {/* Hover background */}
-                  <div className="absolute inset-0 bg-primary-black pointer-events-none" />
+                  <div className="bg-primary-black absolute inset-0 origin-bottom scale-y-0 transform transition-transform duration-500 ease-in-out group-hover:scale-y-100" />
 
                   {/* Content */}
-                  <div className="relative py-8 flex justify-between items-start">
+                  <div className="relative flex items-start justify-between py-8">
                     <div>
-                      <span className="block text-sm text-[#999898] mb-2">
+                      <span className="mb-2 block text-sm font-medium text-white">
                         {award.platform}
                       </span>
-                      <h3 className="text-2xl font-medium group-hover:text-white transition-colors">
+                      <h3 className="text-2xl font-medium transition-colors group-hover:text-white">
                         {award.title}
                       </h3>
                     </div>
-                    <span className="text-sm text-[#999898]">{award.date}</span>
+                    <span className="text-sm text-[#BBBBBB]">{award.date}</span>
                   </div>
                 </li>
               ))}
@@ -117,6 +120,6 @@ export const AwardsSection = () => {
           </div>
         </div>
       </div>
-    </section>
-  );
-};
+    </>
+  )
+}

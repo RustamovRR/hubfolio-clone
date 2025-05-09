@@ -34,7 +34,7 @@ export const PartnersSection = () => {
   return (
     <section className="py-20">
       <div className="container mx-auto">
-        <h6 className="featured_works relative text-[20px] font-medium">
+        <h6 className="partner_with ml-6 relative text-[20px] font-medium">
           partner with +150 brands
         </h6>
 
