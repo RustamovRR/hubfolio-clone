@@ -61,7 +61,7 @@ export default function Home() {
         <MarqueeSection />
       </section>
 
-      <section className="mt-20 py-10" ref={worksRef}>
+      <section ref={worksRef}>
         <FeaturedWorksSection />
       </section>
 

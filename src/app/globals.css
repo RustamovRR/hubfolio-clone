@@ -81,3 +81,14 @@ main {
   top: 6px;
   left: -5%;
 }
+
+.featured_works:after {
+  content: '';
+  width: 7px;
+  height: 7px;
+  background: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 12px;
+  left: -20%;
+}
