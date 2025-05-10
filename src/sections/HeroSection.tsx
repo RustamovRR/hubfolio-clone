@@ -5,18 +5,17 @@ import Image from 'next/image'
 export const HeroSection = () => {
   return (
     <>
-      <div className="relative mt-20 flex items-center p-10 px-36">
+      <div className="itemscenter relative mt-20 flex p-10 px-36">
         <h1 className="flex-1 text-[120px] leading-[1.2] font-medium">
           Marketing <br /> & SEO studio
         </h1>
-        <div className="w-2/5">
-          <p>
+        <div className="mt-10 w-[40%]">
+          <p className="w-full">
             Connecting businesses with their audiences, and individuals with
             their dreams. Our path forward is one of continuous growth
           </p>
         </div>
 
-        {/* <div className="absolute right-0 top-0"> */}
         <Image
           src="/circle-text.svg"
           alt="Circle Text"
@@ -31,7 +30,6 @@ export const HeroSection = () => {
           height={93}
           className="absolute right-[14.5%] -bottom-[32%] mb-6"
         />
-        {/* </div> */}
       </div>
 
       <section className="relative mt-20 h-[600px] overflow-hidden">
@@ -49,12 +47,12 @@ export const HeroSection = () => {
 
       <div className="mt-20 flex items-start p-10 px-36">
         <div className="w-2/5">
-          <h6 className="blend_of_simplicity relative uppercase font-medium text-sm">
+          <h6 className="dot relative text-sm font-medium uppercase">
             the blend of simplicity and innovation
           </h6>
         </div>
         <div className="flex-1">
-          <h3 className="text-[40px] font-medium leading-[52px]">
+          <h3 className="text-[40px] leading-[52px] font-medium">
             <span className="text-[#999898]">Welcome to Hubfolio</span> — your
             reliable and friendly AI companion designed to make your daily life
             simpler and more enjoyable in this fast-paced world.

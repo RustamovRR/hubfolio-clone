@@ -45,6 +45,8 @@ export const AwardsSection = () => {
     listRefs.current.forEach((item) => {
       if (!item) return
 
+      const bg = item.querySelector('.bg')
+
       gsap.set(bg, {
         yPercent: 100,
       })
@@ -73,7 +75,7 @@ export const AwardsSection = () => {
         <div className="flex items-start justify-between gap-20">
           {/* Left side - Text */}
           <div className="w-2/5">
-            <h6 className="awards_recognition relative mb-6 ml-8 text-[20px] font-medium">
+            <h6 className="dot before:!top-3 before:!-left-[7%] relative mb-6 ml-8 text-[20px] font-medium">
               Awards & Recognition
             </h6>
             <h2 className="text-4xl leading-tight font-medium">

@@ -73,7 +73,7 @@ export default function Home() {
         <TestimonialsSection />
       </section>
 
-      <section className="py-10 px-36">
+      <section className="px-36 py-10">
         <AwardsSection />
       </section>
 
@@ -81,11 +81,13 @@ export default function Home() {
         <ExperienceSection />
       </section>
 
-      <section className="py-10 pt-[200px]">
+      <section className="px-36 pt-20 pb-32">
         <ArticlesSection />
       </section>
 
-      <NewsletterSection />
+      <section className="bg-theme-color border-t border-white/30 px-36 py-32">
+        <NewsletterSection />
+      </section>
     </div>
   )
 }

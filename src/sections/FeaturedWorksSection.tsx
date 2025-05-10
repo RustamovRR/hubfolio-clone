@@ -215,7 +215,7 @@ export const FeaturedWorksSection = () => {
     <>
       {/* Header */}
       <div className="mb-20 flex items-start justify-between px-36">
-        <h6 className="featured_works relative text-[20px] font-medium">
+        <h6 className="dot before:!top-3 before:!-left-[15%] relative text-[20px] font-medium">
           Featured Works
         </h6>
         <div className="w-3/5">
