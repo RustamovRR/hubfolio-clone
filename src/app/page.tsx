@@ -62,13 +62,13 @@ export default function Home() {
         <FeaturedWorksSection />
       </section>
 
-      {/* <section className="bg-primary-black mt-20 rounded-t-[30px]">
+      <section className="bg-primary-black mt-20 rounded-t-[30px]">
         <PartnersSection />
-      </section> */}
+      </section>
 
-      {/* <section className="container mx-auto -translate-y-28">
+      <section className="mx-auto -translate-y-28 lg:container">
         <TestimonialsSection />
-      </section> */}
+      </section>
 
       {/* <section className="container mx-auto py-10">
         <AwardsSection />

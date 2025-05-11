@@ -34,11 +34,11 @@ export const PartnersSection = () => {
   return (
     <div className="container mx-auto py-28">
       <div>
-        <h6 className="dot relative ml-6 text-[20px] font-medium before:!top-3 before:!-left-[2%]">
+        <h6 className="dot relative ml-6 text-[20px] font-medium before:!top-3 before:!-left-[2%] max-lg:ml-6 max-lg:before:!-left-[3%] max-sm:before:!-left-[5%]">
           partner with +150 brands
         </h6>
 
-        <div className="mx-auto mt-16 mb-28 flex items-center justify-between gap-3">
+        <div className="max-xs:grid-cols-1 mx-auto mt-16 mb-28 grid grid-cols-5 items-center justify-between gap-3 max-lg:grid-cols-3 max-lg:flex-wrap max-lg:gap-6 max-md:grid-cols-2">
           {logos.map(({ url, width, height }) => (
             <div
               key={url}

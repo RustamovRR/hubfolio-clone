@@ -1,11 +1,12 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
-import { Draggable } from 'gsap/Draggable'
+import { useRef } from 'react'
 import Image from 'next/image'
-
-gsap.registerPlugin(Draggable)
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Pagination } from 'swiper/modules'
+import type { Swiper as SwiperType } from 'swiper'
+import 'swiper/css'
+import 'swiper/css/pagination'
 
 interface Testimonial {
   id: number
@@ -46,115 +47,14 @@ const testimonials: Testimonial[] = [
   },
 ]
 
-// Create extended array for infinite loop
-const extendedTestimonials = [...testimonials, ...testimonials, ...testimonials]
-
 export const TestimonialsSection = () => {
-  const [activeIndex, setActiveIndex] = useState(testimonials.length) // Start from middle array
-  const testimonialContentRef = useRef<HTMLDivElement>(null)
-  const dragInstance = useRef<Draggable | null>(null)
-  const isAnimating = useRef(false)
-  const startX = useRef(0)
-
-  const handleDotClick = (index: number) => {
-    if (isAnimating.current || !testimonialContentRef.current) return
-
-    const realIndex = index + testimonials.length
-    const slideWidth = testimonialContentRef.current.offsetWidth
-
-    isAnimating.current = true
-    gsap.to(testimonialContentRef.current, {
-      x: -(realIndex * slideWidth),
-      duration: 0.8,
-      ease: 'power3.out',
-      onComplete: () => {
-        setActiveIndex(realIndex)
-        isAnimating.current = false
-      },
-    })
-  }
-
-  useEffect(() => {
-    if (!testimonialContentRef.current) return
-
-    const slideWidth = testimonialContentRef.current.offsetWidth
-
-    // Set initial position
-    gsap.set(testimonialContentRef.current, {
-      x: -(activeIndex * slideWidth),
-    })
-
-    dragInstance.current = Draggable.create(testimonialContentRef.current, {
-      type: 'x',
-      inertia: true,
-      onDragStart: function () {
-        if (isAnimating.current) {
-          this.endDrag()
-          return
-        }
-        startX.current = this.x
-      },
-      onDrag: function () {
-        const currentX = this.x
-        const totalWidth = slideWidth * testimonials.length
-
-        if (currentX < -(totalWidth * 2)) {
-          this.x += totalWidth
-          startX.current += totalWidth
-        } else if (currentX > -totalWidth) {
-          this.x -= totalWidth
-          startX.current -= totalWidth
-        }
-      },
-      onDragEnd: function () {
-        const movement = this.x - startX.current
-        const threshold = 100
-        const currentPosition = Math.abs(this.x)
-        const currentIndex = Math.round(currentPosition / slideWidth)
-        let targetIndex = currentIndex
-
-        if (Math.abs(movement) > threshold) {
-          targetIndex = movement > 0 ? currentIndex - 1 : currentIndex + 1
-        }
-
-        isAnimating.current = true
-
-        gsap.to(testimonialContentRef.current, {
-          x: -(targetIndex * slideWidth),
-          duration: 0.8,
-          ease: 'power3.out',
-          onComplete: () => {
-            setActiveIndex(targetIndex)
-            isAnimating.current = false
-
-            if (targetIndex >= testimonials.length * 2) {
-              gsap.set(testimonialContentRef.current, {
-                x: -(testimonials.length * slideWidth),
-              })
-              setActiveIndex(testimonials.length)
-            } else if (targetIndex < testimonials.length) {
-              gsap.set(testimonialContentRef.current, {
-                x: -(testimonials.length * 2 * slideWidth),
-              })
-              setActiveIndex(testimonials.length * 2)
-            }
-          },
-        })
-      },
-    })[0]
-
-    return () => {
-      if (dragInstance.current) {
-        dragInstance.current.kill()
-      }
-    }
-  }, [activeIndex])
+  const swiperRef = useRef<SwiperType>(null)
 
   return (
     <>
-      <div className="bg-primary-blue flex h-[571px] justify-between gap-40 rounded-2xl p-12">
+      <div className="bg-primary-blue flex justify-between gap-40 rounded-[30px] max-lg:flex-col max-lg:gap-10 max-lg:pb-24 sm:p-12 lg:h-[571px]">
         {/* Left side with quote icon */}
-        <div className="mt-10">
+        <div className="mt-10 max-lg:flex max-lg:items-start">
           <div className="relative flex items-center justify-center rounded-full">
             <Image
               src="/vector-circle-text.svg"
@@ -172,26 +72,35 @@ export const TestimonialsSection = () => {
           </div>
         </div>
 
-        {/* Right side with draggable carousel */}
-        <div className="flex w-[55%] items-center overflow-hidden">
+        {/* Right side with Swiper carousel */}
+        <div className="flex w-[55%] items-center overflow-hidden max-lg:w-full">
           <div className="relative w-full">
-            <div
-              ref={testimonialContentRef}
-              className="flex cursor-grab active:cursor-grabbing"
+            <Swiper
+              onSwiper={(swiper) => {
+                swiperRef.current = swiper
+              }}
+              modules={[Pagination]}
+              loop={true}
+              slidesPerView={1}
+              pagination={{
+                clickable: true,
+                el: '.testimonials-pagination',
+                bulletClass:
+                  'inline-block h-2 w-2 cursor-pointer rounded-full bg-white/30 transition-all',
+                bulletActiveClass: '!bg-white',
+              }}
+              className="testimonials-swiper"
             >
-              {extendedTestimonials.map((testimonial, index) => (
-                <div
-                  key={`${testimonial.id}-${index}`}
-                  className="flex w-full shrink-0 justify-center"
-                >
-                  <div className="w-[90%]">
-                    <p className="mb-8 text-4xl font-medium text-white">
-                      {testimonial.text}
-                    </p>
+              {testimonials.map((testimonial) => (
+                <SwiperSlide key={testimonial.id}>
+                  <div className="flex justify-center">
+                    <div className="w-[90%]">
+                      <p className="mb-8 text-4xl font-medium text-white">
+                        {testimonial.text}
+                      </p>
 
-                    <hr className="my-8 border-white/20" />
+                      <hr className="my-8 border-white/20" />
 
-                    <div className="flex items-center">
                       <div className="flex items-center gap-4">
                         <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full bg-white/10">
                           {testimonial.avatar && (
@@ -214,23 +123,13 @@ export const TestimonialsSection = () => {
                       </div>
                     </div>
                   </div>
-                </div>
+                </SwiperSlide>
               ))}
-            </div>
+            </Swiper>
 
-            {/* Navigation dots - now positioned absolutely */}
-            <div className="absolute right-[calc(50%-250px)] bottom-0 flex gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => handleDotClick(index)}
-                  className={`h-2 w-2 rounded-full transition-colors ${
-                    index === activeIndex % testimonials.length
-                      ? 'bg-white'
-                      : 'bg-white/30'
-                  }`}
-                />
-              ))}
+            {/* Navigation dots */}
+            <div className="absolute right-[calc(50%-290px)] bottom-0 flex h-10 items-center justify-center rounded-full border border-white/20 bg-white/5 px-4 py-2 max-lg:right-[5%]">
+              <div className="testimonials-pagination flex items-center gap-4"></div>
             </div>
           </div>
         </div>
