@@ -35,15 +35,15 @@ export const ArticlesSection = () => {
   return (
     <>
       <div className="container mx-auto">
-        <div className="mb-16 flex items-center justify-between">
+        <div className="mb-16 flex items-center justify-between max-lg:items-start max-sm:flex-col">
           <h2 className="text-6xl font-medium">Our Articles</h2>
-          <button className="flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 text-sm transition-colors hover:bg-white hover:text-black">
+          <button className="flex items-center gap-2 rounded-full border border-white/30 px-8 py-4 text-sm transition-colors hover:bg-white hover:text-black max-lg:mt-4">
             <span> See All Articles</span>
             <ChevronRight />
           </button>
         </div>
 
-        <div className="grid grid-cols-3 gap-8">
+        <div className="grid grid-cols-3 gap-8 max-lg:grid-cols-1">
           {articles.map((article) => (
             <ArticleCard key={article.id} {...article} />
           ))}

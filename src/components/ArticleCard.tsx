@@ -4,7 +4,10 @@ import React, { FC } from 'react'
 
 const ArticleCard: FC<IArticle> = ({ id, category, date, image, title }) => {
   return (
-    <article key={id} className="group border-t border-white/15 pt-10">
+    <article
+      key={id}
+      className="group border-t border-white/15 pt-10 max-lg:w-full"
+    >
       {/* Content */}
       <div className="mb-8 space-y-4">
         <div className="flex items-center gap-4 text-sm text-[#999898]">
@@ -16,7 +19,7 @@ const ArticleCard: FC<IArticle> = ({ id, category, date, image, title }) => {
       </div>
 
       {/* Image */}
-      <div className="relative h-[300px] max-w-[410px] overflow-hidden">
+      <div className="relative h-[300px] overflow-hidden lg:max-w-[410px]">
         <Image
           src={image}
           alt={title}

@@ -63,7 +63,7 @@ export const ExperienceSection = () => {
       <div className="mx-auto">
         <div className="flex gap-12">
           {/* Left side - Sticky Image */}
-          <div className="flex-1">
+          <div className="flex-1 max-lg:hidden">
             <div className="sticky-image sticky -top-10">
               <div className="relative h-screen w-full overflow-hidden">
                 <Image
@@ -77,11 +77,14 @@ export const ExperienceSection = () => {
           </div>
 
           {/* Right side - Scrolling Content */}
-          <div ref={contentRef} className="w-[47%] pr-4">
+          <div
+            ref={contentRef}
+            className="w-[47%] max-lg:container max-lg:mx-auto max-lg:w-full"
+          >
             {experiences.map(
               ({ id, title, subtitle, value, label, label2 }) => (
-                <div key={id} className="mt-40">
-                  <h6 className="dot relative mb-6 ml-7 text-[20px] font-medium text-[#999898] before:!top-3 before:!-left-[4%]">
+                <div key={id} className="mt-40 max-lg:mt-20">
+                  <h6 className="dot relative mb-6 ml-7 text-[20px] font-medium text-[#999898] before:!top-3 before:!-left-[4%] max-lg:before:!-left-[3%]">
                     {title}
                   </h6>
 
@@ -89,7 +92,7 @@ export const ExperienceSection = () => {
                     {subtitle}
                   </h2>
 
-                  <div className="mt-8 flex items-end justify-between gap-8 pr-8">
+                  <div className="max-xs:flex-wrap mt-8 flex items-end justify-between gap-8 pr-8">
                     <span className="text-[100px] leading-none font-semibold opacity-10">
                       {value}
                     </span>

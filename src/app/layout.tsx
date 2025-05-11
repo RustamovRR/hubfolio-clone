@@ -80,9 +80,9 @@ export default function RootLayout({
               <Header />
             </header>
             <main className="flex-1">{children}</main>
-            {/* <footer>
+            <footer>
               <Footer />
-            </footer> */}
+            </footer>
           </div>
         </div>
       </body>

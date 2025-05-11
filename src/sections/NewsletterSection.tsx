@@ -25,11 +25,11 @@ export const NewsletterSection = () => {
   ]
   return (
     <div className="container mx-auto py-32">
-      <div className="flex justify-between gap-8">
+      <div className="flex justify-between gap-8 max-lg:flex-col max-lg:px-4">
         {/* Newsletter Form */}
-        <div className="col-span-4">
-          <div className="w-3/5">
-            <h2 className="mb-12 text-2xl font-medium">
+        <div className="col-span-4 max-lg:w-full">
+          <div className="w-3/5 max-lg:w-full">
+            <h2 className="mb-12 text-2xl font-medium max-lg:w-3/5 max-sm:w-full">
               Be the first to get the latest news about trends, inspiration &
               more
             </h2>
@@ -74,8 +74,8 @@ export const NewsletterSection = () => {
           </div>
         </div>
 
-        <div className="flex w-3/5">
-          <div className="col-span-2 grid w-full grid-cols-2 justify-between space-y-10">
+        <div className="flex w-3/5 max-lg:mt-6 max-lg:w-full">
+          <div className="max-xs:grid-cols-1 col-span-2 grid w-full grid-cols-2 justify-between space-y-10">
             {items.map((item, index) => (
               <div key={index} className="w-full">
                 <h3 className="text-2xl font-medium">{item.title}</h3>

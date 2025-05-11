@@ -36,12 +36,12 @@ const Header = () => {
   return (
     <div
       className={cn(
-        'w-full bg-transparent transition-all duration-500',
+        ' w-full bg-transparent transition-all duration-500',
         hideHeader ? '-translate-y-[100px]' : 'translate-y-0',
         showSticky ? 'bg-black/50 backdrop-blur-md' : '',
       )}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto py-4 backdrop-blur-2xl ">
         <div className="max-xs:flex-col max-xs:items-start flex items-center justify-between">
           <section className="flex items-center gap-4">
             {/* Logo */}

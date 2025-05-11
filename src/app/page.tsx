@@ -74,17 +74,17 @@ export default function Home() {
         <AwardsSection />
       </section>
 
-      {/* <section className="py-10">
+      <section className="py-10 max-lg:py-0">
         <ExperienceSection />
-      </section> */}
+      </section>
 
-      {/* <section className="container mx-auto pt-20 pb-32">
+      <section className="container mx-auto pt-20 pb-32">
         <ArticlesSection />
-      </section> */}
+      </section>
 
-      {/* <section className="bg-theme-color border-t border-white/30">
+      <section className="bg-theme-color border-t border-white/30">
         <NewsletterSection />
-      </section> */}
+      </section>
     </div>
   )
 }

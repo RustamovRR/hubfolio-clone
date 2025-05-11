@@ -4,9 +4,9 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className="bg-theme-color border-t border-[#222] py-8">
+    <div className="bg-theme-color border-t border-[#222] py-8 max-lg:px-4">
       <div className="container mx-auto">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between max-sm:flex-col max-sm:items-start">
           {/* Logo and Copyright */}
           <div className="flex items-center gap-10">
             <Link href="/" className="text-3xl font-bold">
@@ -20,8 +20,8 @@ const Footer = () => {
           </div>
 
           {/* Navigation */}
-          <nav>
-            <ul className="flex gap-12">
+          <nav className="max-sm:mt-6">
+            <ul className="max-xs:flex-wrap max-xs:items-center flex gap-12">
               {NAVIGATION_DATA.map(({ href, title }) => (
                 <li key={title}>
                   <Link
