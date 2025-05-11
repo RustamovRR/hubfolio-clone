@@ -46,13 +46,13 @@ export default function Home() {
 
   return (
     <div>
-      <section className='overflow-hidden'>
+      <section className="overflow-hidden">
         <HeroSection />
       </section>
 
-      {/* <section className="container mx-auto mt-20 py-10" ref={servicesRef}>
+      <section className="container mx-auto mt-20 py-10" ref={servicesRef}>
         <OurServicesSection />
-      </section> */}
+      </section>
 
       {/* <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
         <MarqueeSection />
