@@ -43,14 +43,14 @@ const experiences: Experience[] = [
 ]
 
 export const ExperienceSection = () => {
-  const sectionRef = useRef<HTMLElement>(null)
+  const wrapperRef = useRef<HTMLDivElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (!sectionRef.current || !contentRef.current) return
+    if (!wrapperRef.current || !contentRef.current) return
 
     ScrollTrigger.create({
-      trigger: sectionRef.current,
+      trigger: wrapperRef.current,
       start: 'top top',
       end: 'bottom bottom',
       pin: '.sticky-image',
@@ -59,7 +59,7 @@ export const ExperienceSection = () => {
   }, [])
 
   return (
-    <section ref={sectionRef} className="relative py-10">
+    <div ref={wrapperRef} className="relative py-10">
       <div className="mx-auto">
         <div className="flex gap-12">
           {/* Left side - Sticky Image */}
@@ -105,6 +105,6 @@ export const ExperienceSection = () => {
           </div>
         </div>
       </div>
-    </section>
+    </div>
   )
 }

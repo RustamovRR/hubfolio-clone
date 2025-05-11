@@ -214,8 +214,8 @@ export const FeaturedWorksSection = () => {
   return (
     <>
       {/* Header */}
-      <div className="mb-20 flex items-start justify-between px-36">
-        <h6 className="dot before:!top-3 before:!-left-[15%] relative text-[20px] font-medium">
+      <div className="container mx-auto mb-20 flex items-start justify-between">
+        <h6 className="dot relative text-[20px] font-medium before:!top-3 before:!-left-[15%]">
           Featured Works
         </h6>
         <div className="w-3/5">
@@ -246,7 +246,7 @@ export const FeaturedWorksSection = () => {
         </div>
 
         {/* Slide Title */}
-        <div ref={titleRef} className="overflow-hidden text-center mt-10">
+        <div ref={titleRef} className="mt-10 overflow-hidden text-center">
           <h3 className="text-[50px] font-medium">
             {works[currentSlide % works.length].title}
           </h3>

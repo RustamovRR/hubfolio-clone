@@ -35,9 +35,13 @@ const Header = () => {
 
   return (
     <div
-      className={`fixed top-0 left-0 z-50 w-full transition-all duration-500 ${hideHeader ? '-translate-y-[100px]' : 'translate-y-0'} ${showSticky ? 'bg-black/50 backdrop-blur-md' : ''} `}
+      className={cn(
+        'w-full bg-transparent transition-all duration-500',
+        hideHeader ? '-translate-y-[100px]' : 'translate-y-0',
+        showSticky ? 'bg-black/50 backdrop-blur-md' : '',
+      )}
     >
-      <div className="mx-auto px-36 py-8">
+      <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <section className="flex items-center gap-4">
             {/* Logo */}
@@ -53,7 +57,7 @@ const Header = () => {
             </Link>
 
             {/* Navigation */}
-            <nav className="flex h-[43px] items-center rounded-[30px] border border-white/30 p-1">
+            <nav className="flex h-[43px] items-center rounded-[30px] border border-white/30 p-1 max-lg:hidden">
               {NAVIGATION_DATA.map(({ href, title }, index) => (
                 <Link
                   key={title}

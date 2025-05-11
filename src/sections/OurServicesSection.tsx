@@ -39,8 +39,6 @@ const services: ServiceItem[] = [
 ]
 
 const OurServicesSection = () => {
-  // Remove useEffect since we're using CSS transitions now
-
   return (
     <>
       {/* Title and Button */}

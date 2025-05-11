@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 const Footer = () => {
   return (
-    <div className="bg-theme-color border-t border-[#222] px-36 py-8">
+    <div className="bg-theme-color border-t border-[#222] py-8">
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           {/* Logo and Copyright */}

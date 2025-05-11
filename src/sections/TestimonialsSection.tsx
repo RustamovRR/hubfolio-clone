@@ -152,87 +152,85 @@ export const TestimonialsSection = () => {
 
   return (
     <>
-      <div className="container mx-auto">
-        <div className="bg-primary-blue flex h-[571px] justify-between gap-40 rounded-2xl p-12">
-          {/* Left side with quote icon */}
-          <div className="mt-10">
-            <div className="relative flex items-center justify-center rounded-full">
-              <Image
-                src="/vector-circle-text.svg"
-                width={240}
-                height={240}
-                alt=""
-              />
-              <Image
-                src="/vector-quote.svg"
-                width={100}
-                height={77}
-                alt=""
-                className="absolute"
-              />
-            </div>
+      <div className="bg-primary-blue flex h-[571px] justify-between gap-40 rounded-2xl p-12">
+        {/* Left side with quote icon */}
+        <div className="mt-10">
+          <div className="relative flex items-center justify-center rounded-full">
+            <Image
+              src="/vector-circle-text.svg"
+              width={240}
+              height={240}
+              alt=""
+            />
+            <Image
+              src="/vector-quote.svg"
+              width={100}
+              height={77}
+              alt=""
+              className="absolute"
+            />
           </div>
+        </div>
 
-          {/* Right side with draggable carousel */}
-          <div className="flex w-[55%] items-center overflow-hidden">
-            <div className="relative w-full">
-              <div
-                ref={testimonialContentRef}
-                className="flex cursor-grab active:cursor-grabbing"
-              >
-                {extendedTestimonials.map((testimonial, index) => (
-                  <div
-                    key={`${testimonial.id}-${index}`}
-                    className="flex w-full shrink-0 justify-center"
-                  >
-                    <div className="w-[90%]">
-                      <p className="mb-8 text-4xl font-medium text-white">
-                        {testimonial.text}
-                      </p>
+        {/* Right side with draggable carousel */}
+        <div className="flex w-[55%] items-center overflow-hidden">
+          <div className="relative w-full">
+            <div
+              ref={testimonialContentRef}
+              className="flex cursor-grab active:cursor-grabbing"
+            >
+              {extendedTestimonials.map((testimonial, index) => (
+                <div
+                  key={`${testimonial.id}-${index}`}
+                  className="flex w-full shrink-0 justify-center"
+                >
+                  <div className="w-[90%]">
+                    <p className="mb-8 text-4xl font-medium text-white">
+                      {testimonial.text}
+                    </p>
 
-                      <hr className="my-8 border-white/20" />
+                    <hr className="my-8 border-white/20" />
 
-                      <div className="flex items-center">
-                        <div className="flex items-center gap-4">
-                          <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full bg-white/10">
-                            {testimonial.avatar && (
-                              <Image
-                                src={testimonial.avatar}
-                                alt={testimonial.author}
-                                fill
-                                className="object-cover"
-                              />
-                            )}
-                          </div>
-                          <div>
-                            <h4 className="mb-1 text-lg font-medium text-white">
-                              {testimonial.author}
-                            </h4>
-                            <p className="text-sm text-[#BBBBBB]">
-                              {testimonial.position}, {testimonial.company}
-                            </p>
-                          </div>
+                    <div className="flex items-center">
+                      <div className="flex items-center gap-4">
+                        <div className="relative h-[50px] w-[50px] overflow-hidden rounded-full bg-white/10">
+                          {testimonial.avatar && (
+                            <Image
+                              src={testimonial.avatar}
+                              alt={testimonial.author}
+                              fill
+                              className="object-cover"
+                            />
+                          )}
+                        </div>
+                        <div>
+                          <h4 className="mb-1 text-lg font-medium text-white">
+                            {testimonial.author}
+                          </h4>
+                          <p className="text-sm text-[#BBBBBB]">
+                            {testimonial.position}, {testimonial.company}
+                          </p>
                         </div>
                       </div>
                     </div>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
 
-              {/* Navigation dots - now positioned absolutely */}
-              <div className="absolute right-[calc(50%-250px)] bottom-0 flex gap-2">
-                {testimonials.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => handleDotClick(index)}
-                    className={`h-2 w-2 rounded-full transition-colors ${
-                      index === activeIndex % testimonials.length
-                        ? 'bg-white'
-                        : 'bg-white/30'
-                    }`}
-                  />
-                ))}
-              </div>
+            {/* Navigation dots - now positioned absolutely */}
+            <div className="absolute right-[calc(50%-250px)] bottom-0 flex gap-2">
+              {testimonials.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handleDotClick(index)}
+                  className={`h-2 w-2 rounded-full transition-colors ${
+                    index === activeIndex % testimonials.length
+                      ? 'bg-white'
+                      : 'bg-white/30'
+                  }`}
+                />
+              ))}
             </div>
           </div>
         </div>

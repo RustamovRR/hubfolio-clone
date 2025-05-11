@@ -46,46 +46,43 @@ export default function Home() {
 
   return (
     <div>
-      <section>
+      <section className='overflow-hidden'>
         <HeroSection />
       </section>
 
-      <section className="mt-20 p-10 px-36" ref={servicesRef}>
+      <section className="container mx-auto mt-20 py-10" ref={servicesRef}>
         <OurServicesSection />
       </section>
 
-      <section
-        className="relative mb-40 h-[300px] overflow-hidden"
-        ref={marqueeRef}
-      >
+      <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
         <MarqueeSection />
       </section>
 
-      <section ref={worksRef}>
+      <section ref={worksRef} className="mt-28">
         <FeaturedWorksSection />
       </section>
 
-      <section className="bg-primary-black mt-20 rounded-t-[30px] px-36 py-10">
+      <section className="bg-primary-black mt-20 rounded-t-[30px]">
         <PartnersSection />
       </section>
 
-      <section className="-translate-y-28 px-36">
+      <section className="container mx-auto -translate-y-28">
         <TestimonialsSection />
       </section>
 
-      <section className="px-36 py-10">
+      <section className="container mx-auto py-10">
         <AwardsSection />
       </section>
 
       <section className="py-10">
-        <ExperienceSection />
+        {/* <ExperienceSection /> */}
       </section>
 
-      <section className="px-36 pt-20 pb-32">
+      <section className="container mx-auto pt-20 pb-32">
         <ArticlesSection />
       </section>
 
-      <section className="bg-theme-color border-t border-white/30 px-36 py-32">
+      <section className="bg-theme-color border-t border-white/30">
         <NewsletterSection />
       </section>
     </div>

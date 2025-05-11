@@ -24,72 +24,70 @@ export const NewsletterSection = () => {
     },
   ]
   return (
-    <>
-      <div className="container mx-auto">
-        <div className="flex justify-between gap-8">
-          {/* Newsletter Form */}
-          <div className="col-span-4">
-            <div className="w-3/5">
-              <h2 className="mb-12 text-2xl font-medium">
-                Be the first to get the latest news about trends, inspiration &
-                more
-              </h2>
-              <form className="space-y-6">
-                <div className="space-y-2">
-                  <label className="block text-sm">Email Address</label>
-                  <div className="relative">
-                    <input
-                      type="email"
-                      placeholder="Enter your email address"
-                      className="w-full rounded-none border-none bg-[#222] px-6 py-4 focus:outline-none"
-                    />
-                    <button
-                      type="submit"
-                      className="absolute top-1/2 right-4 -translate-y-1/2"
+    <div className="container mx-auto py-32">
+      <div className="flex justify-between gap-8">
+        {/* Newsletter Form */}
+        <div className="col-span-4">
+          <div className="w-3/5">
+            <h2 className="mb-12 text-2xl font-medium">
+              Be the first to get the latest news about trends, inspiration &
+              more
+            </h2>
+            <form className="space-y-6">
+              <div className="space-y-2">
+                <label className="block text-sm">Email Address</label>
+                <div className="relative">
+                  <input
+                    type="email"
+                    placeholder="Enter your email address"
+                    className="w-full rounded-none border-none bg-[#222] px-6 py-4 focus:outline-none"
+                  />
+                  <button
+                    type="submit"
+                    className="absolute top-1/2 right-4 -translate-y-1/2"
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
                     >
-                      <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M5 12H19M19 12L12 5M19 12L12 19"
-                          stroke="currentColor"
-                          strokeWidth="2"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                      </svg>
-                    </button>
-                  </div>
+                      <path
+                        d="M5 12H19M19 12L12 5M19 12L12 19"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </button>
                 </div>
-                <p className="text-sm text-[#666]">
-                  By subscribing, you're accept our{' '}
-                  <Link href="/privacy" className="text-white hover:underline">
-                    Privacy Policy
-                  </Link>
-                </p>
-              </form>
-            </div>
+              </div>
+              <p className="text-sm text-[#666]">
+                By subscribing, you're accept our{' '}
+                <Link href="/privacy" className="text-white hover:underline">
+                  Privacy Policy
+                </Link>
+              </p>
+            </form>
           </div>
+        </div>
 
-          <div className="flex w-3/5">
-            <div className="col-span-2 grid grid-cols-2 space-y-10 gap--32">
-              {items.map((item, index) => (
-                <div key={index} className="w-full">
-                  <h3 className="text-2xl font-medium">{item.title}</h3>
-                  <div className="mt-4 flex flex-col gap-2">
-                    <p className="text-sm">{item.desc1}</p>
-                    <p className="text-sm">{item.desc2}</p>
-                  </div>
+        <div className="flex w-3/5">
+          <div className="col-span-2 grid w-full grid-cols-2 justify-between space-y-10">
+            {items.map((item, index) => (
+              <div key={index} className="w-full">
+                <h3 className="text-2xl font-medium">{item.title}</h3>
+                <div className="mt-4 flex flex-col gap-2">
+                  <p className="text-sm">{item.desc1}</p>
+                  <p className="text-sm">{item.desc2}</p>
                 </div>
-              ))}
-            </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>
-    </>
+    </div>
   )
 }

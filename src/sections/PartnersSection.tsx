@@ -32,9 +32,9 @@ export const PartnersSection = () => {
   ]
 
   return (
-    <section className="py-20">
-      <div className="container mx-auto">
-        <h6 className="dot before:!top-3 before:!-left-[2%] ml-6 relative text-[20px] font-medium">
+    <div className="container mx-auto py-28">
+      <div>
+        <h6 className="dot relative ml-6 text-[20px] font-medium before:!top-3 before:!-left-[2%]">
           partner with +150 brands
         </h6>
 
@@ -49,6 +49,6 @@ export const PartnersSection = () => {
           ))}
         </div>
       </div>
-    </section>
+    </div>
   )
 }
