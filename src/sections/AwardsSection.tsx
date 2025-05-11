@@ -71,10 +71,10 @@ export const AwardsSection = () => {
 
   return (
     <>
-      <div className="flex items-start justify-between gap-20">
+      <div className="flex items-start justify-between gap-20 max-lg:flex-col">
         {/* Left side - Text */}
-        <div className="w-2/5">
-          <h6 className="dot relative mb-6 ml-8 text-[20px] font-medium before:!top-3 before:!-left-[7%]">
+        <div className="w-2/5 max-lg:w-full">
+          <h6 className="dot relative mb-6 ml-8 text-[20px] font-medium before:!top-3 before:!-left-[7%] max-lg:before:!-left-[4%]">
             Awards & Recognition
           </h6>
           <h2 className="text-4xl leading-tight font-medium">
@@ -84,7 +84,7 @@ export const AwardsSection = () => {
         </div>
 
         {/* Right side - Awards list */}
-        <div className="flex-1">
+        <div className="flex-1 max-lg:w-full">
           <div className="flex items-center border-b border-white/70 pb-8 text-sm">
             <span className="w-1/2 text-[12px] font-medium text-[#BBBBBB]">
               AWARD TITLE
@@ -98,13 +98,13 @@ export const AwardsSection = () => {
               <li
                 key={award.id}
                 ref={(el) => (listRefs.current[index] = el)}
-                className="group relative h-[114px] cursor-pointer overflow-hidden border-b border-[#333]"
+                className="group relative h-[114px] cursor-pointer overflow-hidden border-b border-[#333] max-sm:h-auto"
               >
                 {/* Hover background */}
                 <div className="bg-primary-black absolute inset-0 origin-bottom scale-y-0 transform transition-transform duration-500 ease-in-out group-hover:scale-y-100" />
 
                 {/* Content */}
-                <div className="relative flex items-start justify-between py-8">
+                <div className="relative flex items-start justify-between py-8 max-sm:flex-col">
                   <div>
                     <span className="mb-2 block text-sm font-medium text-white">
                       {award.platform}

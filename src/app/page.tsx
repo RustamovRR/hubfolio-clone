@@ -70,9 +70,9 @@ export default function Home() {
         <TestimonialsSection />
       </section>
 
-      {/* <section className="container mx-auto py-10">
+      <section className="container mx-auto py-10">
         <AwardsSection />
-      </section> */}
+      </section>
 
       {/* <section className="py-10">
         <ExperienceSection />
