@@ -54,13 +54,13 @@ export default function Home() {
         <OurServicesSection />
       </section>
 
-      {/* <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
+      <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
         <MarqueeSection />
-      </section> */}
+      </section>
 
-      {/* <section ref={worksRef} className="mt-28">
+      <section ref={worksRef} className="mt-28 max-lg:mt-10">
         <FeaturedWorksSection />
-      </section> */}
+      </section>
 
       {/* <section className="bg-primary-black mt-20 rounded-t-[30px]">
         <PartnersSection />

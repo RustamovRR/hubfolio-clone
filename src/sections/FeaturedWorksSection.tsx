@@ -1,12 +1,13 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
-import { gsap } from 'gsap'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
-import { Draggable } from 'gsap/Draggable'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
-
-gsap.registerPlugin(Draggable)
+import { Swiper as SwiperType } from 'swiper'
+import { Swiper, SwiperSlide } from 'swiper/react'
+import { Navigation } from 'swiper/modules'
+import { gsap } from 'gsap'
+import 'swiper/css'
 
 interface WorkItem {
   id: number
@@ -53,98 +54,10 @@ const works: WorkItem[] = [
   },
 ]
 
-// Create duplicated array for infinite loop
-const extendedWorks = [...works, ...works, ...works]
-
 export const FeaturedWorksSection = () => {
-  const [currentSlide, setCurrentSlide] = useState(works.length) // Start from middle array
-  const [isAnimating, setIsAnimating] = useState(false)
-  const sliderWrapperRef = useRef<HTMLDivElement>(null)
-  const sliderRef = useRef<HTMLDivElement>(null)
+  const swiperRef = useRef<SwiperType>(null)
+  const [activeIndex, setActiveIndex] = useState(0)
   const titleRef = useRef<HTMLDivElement>(null)
-  const dragInstance = useRef<Draggable | null>(null)
-
-  // Calculate center offset for active slide
-  const calculateCenterOffset = () => {
-    if (!sliderWrapperRef.current) return 0
-    const wrapperWidth = sliderWrapperRef.current.offsetWidth
-    const slideWidth = 918 + 24 // slide width + gap
-    return (wrapperWidth - slideWidth) / 2
-  }
-
-  useEffect(() => {
-    if (!sliderRef.current || !sliderWrapperRef.current) return
-
-    const centerOffset = calculateCenterOffset()
-
-    // Initialize draggable
-    dragInstance.current = Draggable.create(sliderRef.current, {
-      type: 'x',
-      inertia: true,
-      onDrag: function () {
-        if (isAnimating) return
-        const currentX = this.x
-        const slideWidth = 918 + 24 // slide width + gap
-        const totalWidth = slideWidth * works.length
-
-        // Check if we need to jump to create infinite effect
-        if (currentX < -(totalWidth * 2) + centerOffset) {
-          this.x += totalWidth
-        } else if (currentX > -totalWidth + centerOffset) {
-          this.x -= totalWidth
-        }
-      },
-      onDragEnd: function () {
-        if (isAnimating) return
-        const currentX = this.x - centerOffset
-        const slideWidth = 918 + 24 // slide width + gap
-        const snapX =
-          Math.round(currentX / slideWidth) * slideWidth + centerOffset
-
-        setIsAnimating(true)
-        gsap.to(sliderRef.current, {
-          x: snapX,
-          duration: 0.5,
-          ease: 'power2.out',
-          onComplete: () => setIsAnimating(false),
-        })
-
-        const newSlide =
-          Math.abs(Math.round(currentX / slideWidth)) % works.length
-        if (newSlide !== currentSlide % works.length) {
-          setCurrentSlide(works.length + newSlide)
-          animateTitle(
-            works[newSlide],
-            newSlide > currentSlide % works.length ? 'next' : 'prev',
-          )
-        }
-      },
-    })[0]
-
-    // Initial position
-    gsap.set(sliderRef.current, {
-      x: -(currentSlide * (918 + 24)) + centerOffset,
-    })
-
-    // Update position on window resize
-    const handleResize = () => {
-      if (!sliderRef.current) return
-      const newOffset = calculateCenterOffset()
-      const slideWidth = 918 + 24
-      gsap.set(sliderRef.current, {
-        x: -(currentSlide * slideWidth) + newOffset,
-      })
-    }
-
-    window.addEventListener('resize', handleResize)
-
-    return () => {
-      if (dragInstance.current) {
-        dragInstance.current.kill()
-      }
-      window.removeEventListener('resize', handleResize)
-    }
-  }, [currentSlide, isAnimating])
 
   const animateTitle = (nextWork: WorkItem, direction: 'next' | 'prev') => {
     if (!titleRef.current) return
@@ -161,8 +74,8 @@ export const FeaturedWorksSection = () => {
         // Update content and animate in
         gsap.set(titleRef.current, { y: yOffset })
         titleRef.current!.innerHTML = `
-          <h3 class="text-3xl font-medium mb-2">${nextWork.title}</h3>
-          <p class="text-[#999898]">${nextWork.category}</p>
+          <h3 class="text-[50px] font-medium">${nextWork.title}</h3>
+          <p class="font-sm font-light text-white">${nextWork.category}</p>
         `
         gsap.to(titleRef.current, {
           y: 0,
@@ -174,51 +87,13 @@ export const FeaturedWorksSection = () => {
     })
   }
 
-  const slideAnimation = (direction: 'next' | 'prev') => {
-    if (!sliderRef.current || isAnimating) return
-
-    setIsAnimating(true)
-    const nextSlide = direction === 'next' ? currentSlide + 1 : currentSlide - 1
-
-    const slideWidth = 918 + 24 // slide width + gap
-    const centerOffset = calculateCenterOffset()
-    const xPos = -(nextSlide * slideWidth) + centerOffset
-
-    gsap.to(sliderRef.current, {
-      x: xPos,
-      duration: 1,
-      ease: 'power2.inOut',
-      onComplete: () => {
-        // Check if we need to jump to create infinite effect
-        if (nextSlide >= works.length * 2) {
-          gsap.set(sliderRef.current, {
-            x: -(works.length * slideWidth) + centerOffset,
-          })
-          setCurrentSlide(works.length)
-        } else if (nextSlide < works.length) {
-          gsap.set(sliderRef.current, {
-            x: -(works.length * 2 * slideWidth) + centerOffset,
-          })
-          setCurrentSlide(works.length * 2)
-        } else {
-          setCurrentSlide(nextSlide)
-        }
-        setIsAnimating(false)
-      },
-    })
-
-    const nextWorkIndex = nextSlide % works.length
-    animateTitle(works[nextWorkIndex], direction)
-  }
-
   return (
     <>
-      {/* Header */}
-      <div className="container mx-auto mb-20 flex items-start justify-between">
-        <h6 className="dot relative text-[20px] font-medium before:!top-3 before:!-left-[15%]">
+      <div className="container mx-auto mb-20 flex items-start justify-between max-lg:flex-col">
+        <h6 className="dot relative text-[20px] font-medium before:!top-3 before:!-left-[15%] max-lg:ml-5">
           Featured Works
         </h6>
-        <div className="w-3/5">
+        <div className="w-3/5 max-lg:mt-4 max-lg:w-full">
           <h2 className="text-4xl font-medium">
             Our user-centered design encourages{' '}
             <span className="text-[#999898]">
@@ -229,11 +104,37 @@ export const FeaturedWorksSection = () => {
       </div>
 
       {/* Slider */}
-      <div className="relative overflow-hidden" ref={sliderWrapperRef}>
-        <div ref={sliderRef} className="relative flex gap-6">
-          {extendedWorks.map((work, index) => (
-            <div key={`${work.id}-${index}`} className="relative shrink-0">
-              <div className="relative h-[480px] w-[918px]">
+      <div className="relative overflow-hidden">
+        <Swiper
+          onSwiper={(swiper) => {
+            swiperRef.current = swiper
+          }}
+          onSlideChange={(swiper) => {
+            const direction =
+              swiper.activeIndex > swiper.previousIndex ? 'next' : 'prev'
+            setActiveIndex(swiper.realIndex)
+            animateTitle(works[swiper.realIndex], direction)
+          }}
+          modules={[Navigation]}
+          loop={true}
+          speed={1500}
+          slidesPerView="auto"
+          centeredSlides={true}
+          breakpoints={{
+            0: {
+              slidesPerView: 1,
+              spaceBetween: 0,
+            },
+            1024: {
+              slidesPerView: 2,
+              spaceBetween: 24,
+            },
+          }}
+          className="w-full"
+        >
+          {works.map((work) => (
+            <SwiperSlide key={work.id}>
+              <div className="relative mx-auto h-[480px] w-[calc(49vw)] max-lg:w-[calc(100vw-32px)]">
                 <Image
                   src={work.image}
                   alt={work.title}
@@ -241,36 +142,33 @@ export const FeaturedWorksSection = () => {
                   className="rounded-xl object-cover"
                 />
               </div>
-            </div>
+            </SwiperSlide>
           ))}
-        </div>
+        </Swiper>
 
         {/* Slide Title */}
         <div ref={titleRef} className="mt-10 overflow-hidden text-center">
           <h3 className="text-[50px] font-medium">
-            {works[currentSlide % works.length].title}
+            {works[activeIndex % works.length].title}
           </h3>
           <p className="font-sm font-light text-white">
-            {works[currentSlide % works.length].category}
+            {works[activeIndex % works.length].category}
           </p>
         </div>
 
-        {/* Navigation and Title */}
-        <div className="mx-10 flex flex-col items-center">
+        <div className="mx-10 flex flex-col items-center max-lg:mt-10">
           <div className="mb-6 flex w-full items-center justify-between">
             <button
-              onClick={() => slideAnimation('prev')}
-              disabled={isAnimating}
-              className="flex items-center gap-2 text-lg transition-opacity hover:opacity-70 disabled:opacity-30"
+              onClick={() => swiperRef.current?.slidePrev()}
+              className="flex cursor-pointer items-center gap-2 text-lg transition-opacity hover:opacity-70 disabled:opacity-30"
             >
               <ChevronLeft />
               Prev Slide
             </button>
 
             <button
-              onClick={() => slideAnimation('next')}
-              disabled={isAnimating}
-              className="flex items-center gap-2 text-lg transition-opacity hover:opacity-70 disabled:opacity-30"
+              onClick={() => swiperRef.current?.slideNext()}
+              className="flex cursor-pointer items-center gap-2 text-lg transition-opacity hover:opacity-70 disabled:opacity-30"
             >
               Next Slide
               <ChevronRight />
