@@ -50,41 +50,41 @@ export default function Home() {
         <HeroSection />
       </section>
 
-      <section className="container mx-auto mt-20 py-10" ref={servicesRef}>
+      {/* <section className="container mx-auto mt-20 py-10" ref={servicesRef}>
         <OurServicesSection />
-      </section>
+      </section> */}
 
-      <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
+      {/* <section className="relative h-[300px] overflow-hidden" ref={marqueeRef}>
         <MarqueeSection />
-      </section>
+      </section> */}
 
-      <section ref={worksRef} className="mt-28">
+      {/* <section ref={worksRef} className="mt-28">
         <FeaturedWorksSection />
-      </section>
+      </section> */}
 
-      <section className="bg-primary-black mt-20 rounded-t-[30px]">
+      {/* <section className="bg-primary-black mt-20 rounded-t-[30px]">
         <PartnersSection />
-      </section>
+      </section> */}
 
-      <section className="container mx-auto -translate-y-28">
+      {/* <section className="container mx-auto -translate-y-28">
         <TestimonialsSection />
-      </section>
+      </section> */}
 
-      <section className="container mx-auto py-10">
+      {/* <section className="container mx-auto py-10">
         <AwardsSection />
-      </section>
+      </section> */}
 
-      <section className="py-10">
-        {/* <ExperienceSection /> */}
-      </section>
+      {/* <section className="py-10">
+        <ExperienceSection />
+      </section> */}
 
-      <section className="container mx-auto pt-20 pb-32">
+      {/* <section className="container mx-auto pt-20 pb-32">
         <ArticlesSection />
-      </section>
+      </section> */}
 
-      <section className="bg-theme-color border-t border-white/30">
+      {/* <section className="bg-theme-color border-t border-white/30">
         <NewsletterSection />
-      </section>
+      </section> */}
     </div>
   )
 }

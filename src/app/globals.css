@@ -13,10 +13,28 @@
   --color-primary-blue: var(--primary-blue);
   --color-primary-black: var(--bg-primary-black);
   --color-theme-color: var(--theme-color);
+  --breakpoint-xs: 30rem;
 }
 
 @utility container {
-  width: 1320px;
+  @media (width >= 40rem) {
+    max-width: 40rem; /* 640px */
+  }
+  @media (width < 40rem) {
+    padding: 20px;
+  }
+  @media (width >= 48rem) {
+    max-width: 48rem; /* 768px */
+  }
+  @media (width >= 64rem) {
+    max-width: 64rem; /* 1024px */
+  }
+  @media (width >= 80rem) {
+    max-width: 80rem; /* 1280px */
+  }
+  @media (width >= 96rem) {
+    max-width: 82.5rem; /* 1320px */
+  }
 }
 
 .hubfolio-text {
@@ -35,10 +53,13 @@
 }
 
 body {
-  cursor: none;
   color: white;
+  min-height: 100vh;
   background-image: url('/bg-main.jpg');
   background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 #smooth-wrapper {

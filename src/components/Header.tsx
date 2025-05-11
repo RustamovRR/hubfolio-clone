@@ -42,7 +42,7 @@ const Header = () => {
       )}
     >
       <div className="container mx-auto">
-        <div className="flex items-center justify-between">
+        <div className="max-xs:flex-col max-xs:items-start flex items-center justify-between">
           <section className="flex items-center gap-4">
             {/* Logo */}
             <Link href="/" className="flex items-center gap-2">
@@ -74,7 +74,7 @@ const Header = () => {
           </section>
 
           {/* Actions */}
-          <div className="flex items-center gap-6">
+          <div className="max-xs:mt-4 flex items-center gap-6">
             <Link
               href="#"
               className="flex items-center gap-2 rounded-full bg-white px-6 py-3 text-black transition-colors hover:bg-gray-100"
