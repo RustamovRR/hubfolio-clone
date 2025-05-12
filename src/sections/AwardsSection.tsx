@@ -41,7 +41,6 @@ export const AwardsSection = () => {
   const listRefs = useRef<(HTMLLIElement | null)[]>([])
 
   useEffect(() => {
-    // Initialize hover animations
     listRefs.current.forEach((item) => {
       if (!item) return
 
@@ -97,7 +96,8 @@ export const AwardsSection = () => {
             {awards.map((award, index) => (
               <li
                 key={award.id}
-                ref={(el) => (listRefs.current[index] = el)}
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                ref={(el) => (listRefs.current[index] = el as any)}
                 className="group relative h-[114px] cursor-pointer overflow-hidden border-b border-[#333] max-sm:h-auto"
               >
                 {/* Hover background */}

@@ -29,7 +29,6 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   useEffect(() => {
-    // Smooth scroll setup
     const smoother = ScrollSmoother.create({
       wrapper: '#smooth-wrapper',
       content: '#smooth-content',
@@ -74,7 +73,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
+        className={`${geistSans.variable} ${geistMono.variable} overflow-hidden antialiased`}
       >
         <LoadingScreen />
         <div id="smooth-wrapper">

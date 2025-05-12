@@ -65,7 +65,7 @@ export const NewsletterSection = () => {
                 </div>
               </div>
               <p className="text-sm text-[#666]">
-                By subscribing, you're accept our{' '}
+                By subscribing, you&apos;re accept our{' '}
                 <Link href="/privacy" className="text-white hover:underline">
                   Privacy Policy
                 </Link>

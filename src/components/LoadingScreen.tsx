@@ -4,8 +4,8 @@ import React, { useEffect, useRef } from 'react'
 import gsap from 'gsap'
 
 const LoadingScreen: React.FC = () => {
-  const containerRef = useRef(null)
-  const textRef = useRef(null)
+  const containerRef = useRef<HTMLDivElement>(null)
+  const textRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const tl = gsap.timeline()

@@ -64,14 +64,12 @@ export const FeaturedWorksSection = () => {
 
     const yOffset = direction === 'next' ? 100 : -100
 
-    // Animate current title out
     gsap.to(titleRef.current, {
       y: -yOffset,
       opacity: 0,
       duration: 0.4,
       ease: 'power2.in',
       onComplete: () => {
-        // Update content and animate in
         gsap.set(titleRef.current, { y: yOffset })
         titleRef.current!.innerHTML = `
           <h3 class="text-[50px] font-medium">${nextWork.title}</h3>

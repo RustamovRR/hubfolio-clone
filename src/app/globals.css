@@ -77,8 +77,13 @@ body {
 }
 
 @keyframes flicker {
-  0%, 100% { opacity: 0.1; }
-  50% { opacity: 0.4; }
+  0%,
+  100% {
+    opacity: 0.1;
+  }
+  50% {
+    opacity: 0.4;
+  }
 }
 
 .loading-letter {
@@ -93,12 +98,10 @@ body {
   border-top-right-radius: 50% 20%;
 }
 
-/* Hide default cursor */
 * {
   cursor: none !important;
 }
 
-/* Custom cursor styles */
 .cursor {
   pointer-events: none;
   mix-blend-mode: difference;
