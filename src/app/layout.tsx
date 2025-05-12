@@ -6,7 +6,9 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
 import { ScrollToPlugin } from 'gsap/ScrollToPlugin'
 import { Geist, Geist_Mono } from 'next/font/google'
-import { Header, Footer } from '@/components'
+import Header from '@/components/Header'
+import Footer from '@/components/Footer'
+import LoadingScreen from '@/components/LoadingScreen'
 import './globals.css'
 
 const geistSans = Geist({
@@ -72,11 +74,12 @@ export default function RootLayout({
     <html lang="en">
       <body
         suppressHydrationWarning
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-hidden`}
       >
+        <LoadingScreen />
         <div id="smooth-wrapper">
           <div id="smooth-content" className="flex min-h-screen flex-col">
-            <header>
+            <header className="sticky top-0">
               <Header />
             </header>
             <main className="flex-1">{children}</main>

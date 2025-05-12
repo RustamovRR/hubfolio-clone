@@ -76,6 +76,23 @@ body {
   will-change: transform;
 }
 
+@keyframes flicker {
+  0%, 100% { opacity: 0.1; }
+  50% { opacity: 0.4; }
+}
+
+.loading-letter {
+  font-size: 1.2rem;
+  font-weight: 200;
+  letter-spacing: 0.6em;
+}
+
+.curved-overlay {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  border-top-left-radius: 50% 20%;
+  border-top-right-radius: 50% 20%;
+}
+
 /* Hide default cursor */
 * {
   cursor: none !important;
